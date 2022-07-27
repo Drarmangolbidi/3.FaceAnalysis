@@ -1,34 +1,19 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
 
 import face_recognition
 from PIL import Image, ImageDraw
 import numpy as np
 import cv2
 
-
-# In[3]:
-
-
 webcam_video_stream = cv2.VideoCapture(0)
-
-
 all_face_locations = []
-
-while True:
-    
+while True:   
     ret,current_frame = webcam_video_stream.read()
     
     face_landmarks_list =  face_recognition.face_landmarks(current_frame)
     
     pil_image = Image.fromarray(current_frame)
     
-    d = ImageDraw.Draw(pil_image)
-    
-    
+    d = ImageDraw.Draw(pil_image)    
     index=0
     while index < len(face_landmarks_list):
         
@@ -61,10 +46,3 @@ while True:
 
 webcam_video_stream.release()
 cv2.destroyAllWindows()       
-
-
-# In[ ]:
-
-
-
-
