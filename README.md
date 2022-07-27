@@ -5,7 +5,7 @@
 
 <br>
 
-If you want to detect  the Landmarks you should download the "" and "" . 
+If you want to detect  the Landmarks you should download the "7.Arman.jpg" and "1.Face Landmarks.py" . 
 
 <br>
 
