@@ -49,7 +49,7 @@ pil_image.show()
 
 <br>
 
-## :blush:Step One :( Multi-Face Landmarks ):blush:</b>
+## :blush:Step Two :( Multi-Face Landmarks ):blush:</b>
 
 <br>
 
