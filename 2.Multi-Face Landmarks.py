@@ -1,7 +1,7 @@
 
 import face_recognition
 from PIL import Image , ImageDraw
-face_image = face_recognition.load_image_file('picture2.jpg')
+face_image = face_recognition.load_image_file('8.threeWoman.webp')
 face_landmarks_list = face_recognition.face_landmarks(face_image)
 print(face_landmarks_list)
 
