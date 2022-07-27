@@ -1,29 +1,12 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
 
 import face_recognition
 from PIL import Image , ImageDraw
 
-
-# In[2]:
-
-
-face_image = face_recognition.load_image_file('picture.jpg')
-
-
-# In[3]:
-
+face_image = face_recognition.load_image_file('7.Arman.jpg')
 
 face_landmarks_list = face_recognition.face_landmarks(face_image)
 
 print(face_landmarks_list)
-
-
-# In[4]:
-
 
 for face_landmarks in face_landmarks_list:
     pil_image = Image.fromarray(face_image)
@@ -40,10 +23,4 @@ for face_landmarks in face_landmarks_list:
     
     
 pil_image.show()    
-
-
-# In[ ]:
-
-
-
 
