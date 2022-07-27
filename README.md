@@ -9,8 +9,8 @@ If you want to detect  the Landmarks you should download the "7.Arman.jpg" and "
 
 <br>
 
-<br>
-Download program "1.Image Face Recognition.py" and these images "messi-neymar.jpg" & "messi-ronaldo.jpg" & "messi.jpeg" & "messi.jpg" & "picture.jpg" & "ronaldo-ramos.jpg" & "ronaldo.jpg" . 
+![a](https://user-images.githubusercontent.com/109248678/181346710-cb7fb4c8-dfab-43d6-9e9e-eec58b57af6b.jpg)
+
 <br>
 
 Code is :👇
@@ -18,64 +18,30 @@ Code is :👇
 <br>
 
 ```python
-import cv2
 import face_recognition
-#Libraries 
+from PIL import Image , ImageDraw
 
-original_image=cv2.imread('picture.jpg')
-#Import image
+face_image = face_recognition.load_image_file('7.Arman.jpg')
 
-messi_image = face_recognition.load_image_file('messi.jpeg')
-messi_face_encoding = face_recognition.face_encodings(messi_image)[0]
-#load image of user in face_recognition
-#Convert Image to blob
+face_landmarks_list = face_recognition.face_landmarks(face_image)
 
-ronaldo_image = face_recognition.load_image_file('ronaldo.jpg')
-ronaldo_face_encoding = face_recognition.face_encodings(ronaldo_image)[0]
-#load image of user in face_recognition
-#Convert Image to blob
+print(face_landmarks_list)
 
-known_face_encodings = [messi_face_encoding , ronaldo_face_encoding ]
-known_face_names = [ 'Lionel Messi' , 'Cristiano Ronaldo']
-#Save User blobs in dictionary and after that save name of user in dictionary . 
-
-image_to_recognize = face_recognition.load_image_file('picture.jpg')
-#Upload the photo to facerecognition 
-
-all_face_locations = face_recognition.face_locations(image_to_recognize , model='hog')
-#Find location of face in image with hog 
-
-all_face_encodings = face_recognition.face_encodings(image_to_recognize , all_face_locations)
-#convert photo to blob
-
-print('There Are {} Number of Faces in This Image'.format(len(all_face_locations)))
-#find number of face in image
-
-for current_face_location,current_face_encoding in zip(all_face_locations,all_face_encodings):
-#zip function return iterator like this Shape ((ali,arman),(reza,Gholi)) 
-    top ,right ,bottom ,left  = current_face_location
-    
-    all_matches = face_recognition.compare_faces(known_face_encodings, current_face_encoding)
-   
-    name_of_person = 'Unknown face'
-    
-    if True in all_matches:
-        first_match_index = all_matches.index(True)
-        name_of_person = known_face_names[first_match_index]
-    
-    cv2.rectangle(original_image,(left,top),(right,bottom),(255,0,0),2)
-    
-    font = cv2.FONT_HERSHEY_DUPLEX
-    cv2.putText(original_image, name_of_person, (left,bottom), font, 0.5, (255,255,255),1)
-    
-    cv2.imshow("Faces Identified",original_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-
-
+for face_landmarks in face_landmarks_list:
+    pil_image = Image.fromarray(face_image)
+    d = ImageDraw.Draw(pil_image)
+    d.line(face_landmarks['chin'] , fill=(255,255,255) ,width=1)
+    d.line(face_landmarks['left_eyebrow'] , fill=(255,255,255) ,width=1)
+    d.line(face_landmarks['right_eyebrow'] , fill=(255,255,255) ,width=1)
+    d.line(face_landmarks['nose_bridge'] , fill=(255,255,255) ,width=1)
+    d.line(face_landmarks['nose_tip'] , fill=(255,255,255) ,width=1)
+    d.line(face_landmarks['left_eye'] , fill=(255,255,255) ,width=1)
+    d.line(face_landmarks['right_eye'] , fill=(255,255,255) ,width=1)
+    d.line(face_landmarks['top_lip'] , fill=(255,255,255) ,width=1)
+    d.line(face_landmarks['bottom_lip'] , fill=(255,255,255) ,width=1)
+pil_image.show()    
 ```
-#### EX11_Leve :
+#### EX1_Leve :
 - [ ] Simple! 
 - [ ] Intermediate!
 - [x] Hard!
